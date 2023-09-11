@@ -1,24 +1,22 @@
 import { inferAsyncReturnType } from '@trpc/server';
 import { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import { AuthUser } from '@mono-test/schemas';
+import { getAuthUser } from './services/auth.service';
 
-export type AuthUser = {
-  name: string;
-};
-
-export const SECRET_TOKEN = 'my_secret_token';
-
-function getUser(authorization: string | undefined): AuthUser | null {
+async function getUser(
+  authorization: string | undefined
+): Promise<AuthUser | null> {
   if (authorization) {
     const token = authorization.split(' ')[1];
-    if (token === SECRET_TOKEN) {
-      return { name: 'Test User' };
+    if (token) {
+      return await getAuthUser(token);
     }
   }
   return null;
 }
 
 export async function createContext({ req }: CreateHTTPContextOptions) {
-  const user = getUser(req.headers.authorization) as AuthUser | null;
+  const user = await getUser(req.headers.authorization);
 
   return { user };
 }

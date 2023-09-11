@@ -8,41 +8,33 @@ import {
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { FC } from 'react';
-import { z } from 'zod';
-import { api } from '../api/testApi';
 import { useUsers } from '../context/users';
+import { UserCreateInput, userCreateSchema } from '@mono-test/schemas';
 
-type AddUserModelProps = {
+type AddUserModalProps = {
   opened: boolean;
   onClose: () => void;
 };
 
-const schema = z.object({
-  name: z.string().min(2).max(256),
-  age: z.number().min(18),
-  gender: z.enum(['male', 'female']),
-  company: z.string().min(2).max(256)
-});
+export const AddUserModal: FC<AddUserModalProps> = ({ opened, onClose }) => {
+  const { createUser } = useUsers();
 
-export const AddUserModal: FC<AddUserModelProps> = ({ opened, onClose }) => {
-  const { loadUsers } = useUsers();
-  const form = useForm({
+  const form = useForm<UserCreateInput>({
     initialValues: {
       name: '',
-      age: undefined,
-      gender: undefined,
+      age: undefined!,
+      gender: undefined!,
       company: ''
     },
-    validate: zodResolver(schema)
+    validate: zodResolver(userCreateSchema)
   });
 
   return (
     <Modal opened={opened} onClose={onClose} title="Add new user">
       <form
         onSubmit={form.onSubmit(async (values) => {
-          await api.users.userCreate.mutate(values as any);
           onClose();
-          loadUsers();
+          await createUser(values);
         })}
       >
         <Stack>

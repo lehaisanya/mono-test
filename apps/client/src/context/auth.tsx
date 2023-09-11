@@ -6,8 +6,8 @@ import {
   useContext,
   useState
 } from 'react';
-import { api, setToken } from '../api/testApi';
-import { AuthUser } from '@mono-test/routes';
+import { api, setToken } from '../api';
+import type { AuthUser } from '@mono-test/routes';
 
 type AuthData = {
   login: string;

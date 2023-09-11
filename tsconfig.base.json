@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mono-test/routes": ["libs/routes/src/index.ts"]
+      "@mono-test/routes": ["libs/routes/src/index.ts"],
+      "@mono-test/schemas": ["libs/schemas/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,144 +1,146 @@
 import { NewUser } from './schema';
 
-export const data: NewUser[] = [
+type UserData = Omit<NewUser, 'id'>;
+
+export const data: UserData[] = [
   {
-    name: 'Carlene Kirkland',
-    age: 39,
+    name: 'Esther Tillman',
+    age: 24,
     gender: 'female',
-    company: 'SULFAX',
+    company: 'FILODYNE',
     isActive: true
   },
   {
-    name: 'Parrish Burgess',
-    age: 30,
-    gender: 'male',
-    company: 'ACCUPHARM',
-    isActive: true
-  },
-  {
-    name: 'Minerva Moon',
-    age: 39,
-    gender: 'female',
-    company: 'SPRINGBEE',
-    isActive: true
-  },
-  {
-    name: 'Louise Floyd',
-    age: 21,
-    gender: 'female',
-    company: 'TETAK',
-    isActive: false
-  },
-  {
-    name: 'Shelby Jacobson',
-    age: 31,
-    gender: 'female',
-    company: 'IDEALIS',
-    isActive: false
-  },
-  {
-    name: 'Camille Garza',
-    age: 29,
-    gender: 'female',
-    company: 'VERTIDE',
-    isActive: true
-  },
-  {
-    name: 'Walter Figueroa',
-    age: 30,
-    gender: 'male',
-    company: 'TETRATREX',
-    isActive: false
-  },
-  {
-    name: 'Frederick Frazier',
-    age: 25,
-    gender: 'male',
-    company: 'ZENTIX',
-    isActive: false
-  },
-  {
-    name: 'Jacklyn Campbell',
-    age: 37,
-    gender: 'female',
-    company: 'DIGIGENE',
-    isActive: false
-  },
-  {
-    name: 'Maddox Raymond',
+    name: 'Wood Dunn',
     age: 32,
     gender: 'male',
-    company: 'GRACKER',
+    company: 'CRUSTATIA',
     isActive: false
   },
   {
-    name: 'Anderson Cameron',
-    age: 23,
-    gender: 'male',
-    company: 'QUAILCOM',
-    isActive: false
-  },
-  {
-    name: 'Banks Bridges',
-    age: 25,
-    gender: 'male',
-    company: 'UNI',
-    isActive: true
-  },
-  {
-    name: 'Mae Ortega',
-    age: 40,
-    gender: 'female',
-    company: 'GINKOGENE',
-    isActive: false
-  },
-  {
-    name: 'Henson Mathis',
+    name: 'Walker Preston',
     age: 36,
     gender: 'male',
-    company: 'ZILPHUR',
+    company: 'COMTOURS',
     isActive: false
   },
   {
-    name: 'Berger Wright',
-    age: 21,
-    gender: 'male',
-    company: 'SPHERIX',
-    isActive: true
-  },
-  {
-    name: 'Jami Lara',
+    name: 'Veronica Barnes',
     age: 28,
     gender: 'female',
-    company: 'KATAKANA',
-    isActive: false
-  },
-  {
-    name: 'Gregory Estrada',
-    age: 40,
-    gender: 'male',
-    company: 'GEEKNET',
+    company: 'DRAGBOT',
     isActive: true
   },
   {
-    name: 'Craig Wolf',
-    age: 34,
+    name: 'Marie Clarke',
+    age: 21,
+    gender: 'female',
+    company: 'MALATHION',
+    isActive: true
+  },
+  {
+    name: 'Madeleine Rose',
+    age: 21,
+    gender: 'female',
+    company: 'ZANITY',
+    isActive: true
+  },
+  {
+    name: 'Hays Berger',
+    age: 25,
     gender: 'male',
-    company: 'VITRICOMP',
+    company: 'STREZZO',
     isActive: false
   },
   {
-    name: 'Montgomery Mosley',
-    age: 40,
+    name: 'Frank Knowles',
+    age: 38,
     gender: 'male',
-    company: 'QOT',
+    company: 'EXOBLUE',
+    isActive: true
+  },
+  {
+    name: 'Kerry Pollard',
+    age: 21,
+    gender: 'female',
+    company: 'PHUEL',
     isActive: false
   },
   {
-    name: 'Barker Washington',
+    name: 'Porter Parker',
+    age: 28,
+    gender: 'male',
+    company: 'GORGANIC',
+    isActive: false
+  },
+  {
+    name: 'Estela Burnett',
     age: 31,
+    gender: 'female',
+    company: 'HOTCAKES',
+    isActive: true
+  },
+  {
+    name: 'Lamb Hoffman',
+    age: 23,
     gender: 'male',
-    company: 'ORONOKO',
+    company: 'CANOPOLY',
+    isActive: true
+  },
+  {
+    name: 'Ewing White',
+    age: 26,
+    gender: 'male',
+    company: 'SARASONIC',
+    isActive: true
+  },
+  {
+    name: 'Slater Mckay',
+    age: 26,
+    gender: 'male',
+    company: 'COMBOGEN',
+    isActive: true
+  },
+  {
+    name: 'Lucile Spencer',
+    age: 27,
+    gender: 'female',
+    company: 'GEOSTELE',
+    isActive: false
+  },
+  {
+    name: 'Pauline Wilson',
+    age: 32,
+    gender: 'female',
+    company: 'CHORIZON',
+    isActive: false
+  },
+  {
+    name: 'Gibbs Ballard',
+    age: 27,
+    gender: 'male',
+    company: 'FLUM',
+    isActive: true
+  },
+  {
+    name: 'Aida Ortega',
+    age: 20,
+    gender: 'female',
+    company: 'XIXAN',
+    isActive: false
+  },
+  {
+    name: 'Laurel Baker',
+    age: 39,
+    gender: 'female',
+    company: 'PARCOE',
+    isActive: false
+  },
+  {
+    name: 'Krista Cross',
+    age: 20,
+    gender: 'female',
+    company: 'DATAGENE',
     isActive: true
   }
 ];
