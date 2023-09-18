@@ -1,5 +1,6 @@
 import { inferAsyncReturnType } from '@trpc/server';
 import { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import { CreateExpressContextOptions } from '@trpc/server/adapters/express';
 import { AuthUser } from '@mono-test/schemas';
 import { getAuthUser } from './services/auth.service';
 

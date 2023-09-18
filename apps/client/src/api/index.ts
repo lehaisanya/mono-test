@@ -16,7 +16,7 @@ export function setToken(token: string | null) {
 export const api = createTRPCProxyClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: 'http://localhost:3000',
+      url: '/api',
       headers() {
         return {
           Authorization: `BEARER ${getToken()}`

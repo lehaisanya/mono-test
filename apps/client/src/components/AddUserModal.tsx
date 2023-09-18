@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   Button,
   Modal,
@@ -7,9 +8,8 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { FC } from 'react';
-import { useUsers } from '../context/users.context';
 import { UserCreateInput, userCreateSchema } from '@mono-test/schemas';
+import { useUsers } from '../context/users.context';
 
 type AddUserModalProps = {
   opened: boolean;
@@ -23,7 +23,7 @@ export const AddUserModal: FC<AddUserModalProps> = ({ opened, onClose }) => {
     initialValues: {
       name: '',
       age: 18,
-      gender: null,
+      gender: 'male',
       company: '',
     },
     validate: zodResolver(userCreateSchema),

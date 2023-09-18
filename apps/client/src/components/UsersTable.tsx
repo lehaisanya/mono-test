@@ -1,4 +1,3 @@
-import { DataTable } from 'mantine-datatable';
 import {
   ActionIcon,
   Badge,
@@ -6,20 +5,17 @@ import {
   Button,
   Flex,
   Group,
-  NumberInput,
-  RangeSlider,
   Select,
   Stack,
   Text,
   TextInput,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { IconEdit, IconTrash } from '@tabler/icons-react';
+import { DataTable } from 'mantine-datatable';
 import { useUsers } from '../context/users.context';
 import { AddUserModal } from './AddUserModal';
 import { EditUserModal } from './EditUserModal';
-import { IconEdit, IconTrash } from '@tabler/icons-react';
-import { useEffect, useRef, useState } from 'react';
-import { useDebounce } from '../hooks/useDebounce';
 import { AgeRangeFilter } from './AgeRangeFilter';
 
 export const UsersTable = () => {
@@ -62,7 +58,6 @@ export const UsersTable = () => {
               defaultValue={search}
               onChange={(event) => setSearch(event.currentTarget.value)}
             />
-            {/* <Button>Search</Button> */}
           </Group>
           <Box sx={{ flexGrow: 1 }} />
           <Group>

@@ -8,7 +8,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
-import { User } from '@mono-test/routes';
+import { User } from '@mono-test/db';
 import { userUpdateDataSchema } from '@mono-test/schemas';
 
 interface EditUserFormProps {
