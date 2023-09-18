@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { MantineProvider } from '@mantine/core';
-import { AuthProvider } from './context/auth';
+import { AuthProvider } from './context/auth.context';
 import { App } from './app/app';
 
 const root = ReactDOM.createRoot(

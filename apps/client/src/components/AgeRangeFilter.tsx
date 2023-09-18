@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Group, NumberInput, RangeSlider, Stack } from '@mantine/core';
-import { useUsers } from '../context/users';
+import { useUsers } from '../context/users.context';
 
 export const AgeRangeFilter = () => {
   const { ageFrom, ageTo, setAgeRange } = useUsers();

@@ -8,7 +8,7 @@ import {
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { FC } from 'react';
-import { useUsers } from '../context/users';
+import { useUsers } from '../context/users.context';
 import { UserCreateInput, userCreateSchema } from '@mono-test/schemas';
 
 type AddUserModalProps = {

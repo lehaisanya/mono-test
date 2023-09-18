@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { MainPage } from '../pages/MainPage';
 import { LoginPage } from '../pages/LoginPage';
-import { useAuth } from '../context/auth';
+import { useAuth } from '../context/auth.context';
 import { AppShell, Button, Group, Header, Text } from '@mantine/core';
 import { LoadingPage } from '../pages/LoadingPage';
 

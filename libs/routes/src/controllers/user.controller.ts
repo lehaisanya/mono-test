@@ -12,7 +12,7 @@ import {
   getManyUsers,
   getUserById,
   updateUser
-} from '../services/user.service';
+} from '@mono-test/db';
 
 export const getUsersHandler = async ({
   input

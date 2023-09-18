@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { and, asc, desc, eq, gt, like, lt, or, sql } from 'drizzle-orm';
-import { db } from '../db';
+import { db } from './db';
 import {
   GetUserByIdInput,
   UserCreateInput,
@@ -8,7 +8,7 @@ import {
   UserUpdateInput,
   UsersQueryInput
 } from '@mono-test/schemas';
-import { isSortableField, usersTable } from '../tables/user.table';
+import { isSortableField, usersTable } from './schema';
 
 export const getManyUsers = async (query: UsersQueryInput) => {
   console.log(query);

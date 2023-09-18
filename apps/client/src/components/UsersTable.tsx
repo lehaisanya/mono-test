@@ -14,7 +14,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useUsers } from '../context/users';
+import { useUsers } from '../context/users.context';
 import { AddUserModal } from './AddUserModal';
 import { EditUserModal } from './EditUserModal';
 import { IconEdit, IconTrash } from '@tabler/icons-react';

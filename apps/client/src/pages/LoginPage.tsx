@@ -5,10 +5,10 @@ import {
   PasswordInput,
   Stack,
   Text,
-  TextInput
+  TextInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useAuth } from '../context/auth';
+import { useAuth } from '../context/auth.context';
 
 export const LoginPage = () => {
   const { login } = useAuth();
@@ -16,9 +16,9 @@ export const LoginPage = () => {
   const form = useForm({
     initialValues: {
       login: 'test',
-      password: '12345'
+      password: '12345',
     },
-    clearInputErrorOnChange: true
+    clearInputErrorOnChange: true,
   });
 
   return (
@@ -32,7 +32,7 @@ export const LoginPage = () => {
               await login(values);
             } catch (error) {
               form.setErrors({
-                form: 'Invalid login or password'
+                form: 'Invalid login or password',
               });
             }
           })}

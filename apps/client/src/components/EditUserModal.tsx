@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Center, Loader, Modal } from '@mantine/core';
-import { useUsers } from '../context/users';
+import { useUsers } from '../context/users.context';
 import { EditUserForm } from './EditUserForm';
 
 type EditUserModalProps = {

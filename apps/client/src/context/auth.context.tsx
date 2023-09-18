@@ -4,10 +4,10 @@ import {
   createContext,
   useCallback,
   useContext,
-  useState
+  useState,
 } from 'react';
 import { api, setToken } from '../api';
-import type { AuthUser } from '@mono-test/routes';
+import type { AuthUser } from '@mono-test/schemas';
 
 type AuthData = {
   login: string;
@@ -30,7 +30,7 @@ const AuthContext = createContext<AuthContextValue>(null!);
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState] = useState<AuthContextState>({
     loading: true,
-    user: null
+    user: null,
   });
 
   const loadUser = useCallback(async () => {
@@ -54,7 +54,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     ...state,
     loadUser,
     login,
-    logout
+    logout,
   };
 
   return (

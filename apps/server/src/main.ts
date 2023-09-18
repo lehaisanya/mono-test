@@ -1,5 +1,6 @@
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
-import { connectToDb, createContext, appRouter } from '@mono-test/routes';
+import { createContext, appRouter } from '@mono-test/routes';
+import { connectToDb } from '@mono-test/db';
 import cors from 'cors';
 
 const server = createHTTPServer({
