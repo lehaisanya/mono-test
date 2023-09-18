@@ -37,7 +37,10 @@ dependencies:
     version: 2.8.5
   drizzle-orm:
     specifier: 0.28.6-cb76384
-    version: 0.28.6-cb76384(mysql2@3.6.0)
+    version: 0.28.6-cb76384(kysely@0.26.3)(mysql2@3.6.0)
+  kysely:
+    specifier: 0.26.3
+    version: 0.26.3
   mantine-datatable:
     specifier: 2.9.13
     version: 2.9.13(@mantine/core@6.0.20)(@mantine/hooks@6.0.20)(react@18.2.0)
@@ -5119,7 +5122,7 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /drizzle-orm@0.28.6-cb76384(mysql2@3.6.0):
+  /drizzle-orm@0.28.6-cb76384(kysely@0.26.3)(mysql2@3.6.0):
     resolution: {integrity: sha512-wM9aGXgR6LKo142hmylSsk6qLEhhz93QEf0yu9UCAOtG/oQd9BkpJCaxRoohB6h2R8GSgdqNTuSMBPxs7BPyCg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -5181,6 +5184,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
+      kysely: 0.26.3
       mysql2: 3.6.0
     dev: false
 
@@ -7150,6 +7154,11 @@ packages:
   /klona@2.0.6:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
+    dev: false
+
+  /kysely@0.26.3:
+    resolution: {integrity: sha512-yWSgGi9bY13b/W06DD2OCDDHQmq1kwTGYlQ4wpZkMOJqMGCstVCFIvxCCVG4KfY1/3G0MhDAcZsip/Lw8/vJWw==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /language-subtag-registry@0.3.22:

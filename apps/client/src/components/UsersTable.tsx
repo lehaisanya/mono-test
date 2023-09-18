@@ -6,28 +6,43 @@ import {
   Button,
   Flex,
   Group,
+  NumberInput,
+  RangeSlider,
+  Select,
   Stack,
-  TextInput
+  Text,
+  TextInput,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { PAGE_SIZE, useUsers } from '../context/users';
+import { useUsers } from '../context/users';
 import { AddUserModal } from './AddUserModal';
 import { EditUserModal } from './EditUserModal';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
+import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from '../hooks/useDebounce';
+import { AgeRangeFilter } from './AgeRangeFilter';
 
 export const UsersTable = () => {
   const {
     loadingUsers,
     count,
     page,
+    pageSize,
     users,
     sorting,
     search,
+    genderFilter,
+    isActiveFilter,
+    ageFrom,
+    ageTo,
     setSearch,
+    setGenderFilter,
+    setIsActiveFilter,
     setSorting,
     setPage,
+    setPageSize,
     setEditingUser,
-    deleteUser
+    deleteUser,
   } = useUsers();
 
   const [opened, { open, close }] = useDisclosure(false);
@@ -41,12 +56,13 @@ export const UsersTable = () => {
       <Stack>
         <Flex>
           <Group>
+            <Text>Search:</Text>
             <TextInput
               w={300}
-              value={search}
+              defaultValue={search}
               onChange={(event) => setSearch(event.currentTarget.value)}
             />
-            <Button>Search</Button>
+            {/* <Button>Search</Button> */}
           </Group>
           <Box sx={{ flexGrow: 1 }} />
           <Group>
@@ -61,28 +77,83 @@ export const UsersTable = () => {
         shadow="sm"
         idAccessor="id"
         fetching={loadingUsers}
-        recordsPerPage={PAGE_SIZE}
         totalRecords={count}
         page={page}
         onPageChange={setPage}
+        recordsPerPage={pageSize}
+        recordsPerPageOptions={[10, 15, 20, 25, 30]}
+        onRecordsPerPageChange={setPageSize}
         sortStatus={sorting!}
         onSortStatusChange={setSorting}
         records={users}
         columns={[
-          { accessor: 'name', noWrap: true, sortable: true },
-          { accessor: 'age', sortable: true },
-          { accessor: 'gender', sortable: true },
-          { accessor: 'company', sortable: true },
+          {
+            accessor: 'name',
+            noWrap: true,
+            sortable: true,
+            filtering: search !== '',
+            filter: (
+              <TextInput
+                defaultValue={search}
+                onChange={(event) => setSearch(event.currentTarget.value)}
+              />
+            ),
+          },
+          {
+            accessor: 'age',
+            sortable: true,
+            filtering: ageFrom !== 18 || ageTo !== 200,
+            filter: <AgeRangeFilter />,
+          },
+          {
+            accessor: 'gender',
+            sortable: true,
+            filtering: genderFilter !== null,
+            filter: (
+              <Select
+                clearable
+                value={genderFilter}
+                onChange={setGenderFilter}
+                data={[
+                  { value: 'male', label: 'Male' },
+                  { value: 'female', label: 'Female' },
+                ]}
+              />
+            ),
+          },
+          {
+            accessor: 'company',
+            sortable: true,
+            filtering: search !== '',
+            filter: (
+              <TextInput
+                defaultValue={search}
+                onChange={(event) => setSearch(event.currentTarget.value)}
+              />
+            ),
+          },
           {
             accessor: 'isActive',
             sortable: true,
+            filtering: isActiveFilter !== null,
+            filter: (
+              <Select
+                clearable
+                value={isActiveFilter}
+                onChange={setIsActiveFilter}
+                data={[
+                  { value: 'active', label: 'Active' },
+                  { value: 'unactive', label: 'Unactive' },
+                ]}
+              />
+            ),
             render(record) {
               return (
                 <Badge color={record.isActive ? 'green' : 'red'}>
                   {record.isActive ? 'active' : 'unactive'}
                 </Badge>
               );
-            }
+            },
           },
           {
             accessor: 'actions',
@@ -110,8 +181,8 @@ export const UsersTable = () => {
                   </ActionIcon>
                 </Group>
               );
-            }
-          }
+            },
+          },
         ]}
       />
     </Stack>

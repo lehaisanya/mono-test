@@ -4,7 +4,7 @@ import {
   NumberInput,
   Select,
   Stack,
-  TextInput
+  TextInput,
 } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { FC } from 'react';
@@ -22,11 +22,11 @@ export const AddUserModal: FC<AddUserModalProps> = ({ opened, onClose }) => {
   const form = useForm<UserCreateInput>({
     initialValues: {
       name: '',
-      age: undefined!,
-      gender: undefined!,
-      company: ''
+      age: 18,
+      gender: null,
+      company: '',
     },
-    validate: zodResolver(userCreateSchema)
+    validate: zodResolver(userCreateSchema),
   });
 
   return (
@@ -44,7 +44,7 @@ export const AddUserModal: FC<AddUserModalProps> = ({ opened, onClose }) => {
             label="Gender"
             data={[
               { value: 'male', label: 'Male' },
-              { value: 'female', label: 'Female' }
+              { value: 'female', label: 'Female' },
             ]}
             {...form.getInputProps('gender')}
           />

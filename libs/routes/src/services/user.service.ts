@@ -1,4 +1,5 @@
-import { asc, desc, eq, ilike, sql } from 'drizzle-orm';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { and, asc, desc, eq, gt, like, lt, or, sql } from 'drizzle-orm';
 import { db } from '../db';
 import {
   GetUserByIdInput,
@@ -7,32 +8,56 @@ import {
   UserUpdateInput,
   UsersQueryInput
 } from '@mono-test/schemas';
-import { usersTable } from '../tables/user.table';
+import { isSortableField, usersTable } from '../tables/user.table';
 
 export const getManyUsers = async (query: UsersQueryInput) => {
+  console.log(query);
+
+  const AND = [];
+
+  if (query.search) {
+    const pattern = `%${query.search}%`;
+    AND.push(
+      or(like(usersTable.name, pattern), like(usersTable.company, pattern))
+    );
+  }
+
+  if (query.gender) {
+    AND.push(eq(usersTable.gender, query.gender));
+  }
+
+  if ('isActive' in query) {
+    AND.push(eq(usersTable.isActive, query.isActive!));
+  }
+
+  if (query.ageFrom) {
+    AND.push(gt(usersTable.age, query.ageFrom));
+  }
+
+  if (query.ageTo) {
+    AND.push(lt(usersTable.age, query.ageTo));
+  }
+
+  const where = and(...AND);
+
   const countRequest = db
     .select({ count: sql<number>`count(*)` })
-    .from(usersTable);
+    .from(usersTable)
+    .where(where);
   let usersRequest = db
     .select()
     .from(usersTable)
     .offset(query.offset ?? 0)
-    .limit(query.limit ?? 15);
-
-  if (query.search) {
-    usersRequest = usersRequest.where(ilike(usersTable.name, `%an%`));
-  }
+    .limit(query.limit ?? 15)
+    .where(where);
 
   if (query.sorting) {
-    console.log(query.sorting);
-    const field = query.sorting.columnAccessor;
-    if (['name', 'gender', 'age', 'company', 'isActive'].includes(field)) {
+    const field = query.sorting.column;
+    if (isSortableField(field)) {
       const dir = query.sorting.direction === 'desc' ? desc : asc;
       usersRequest = usersRequest.orderBy(dir(usersTable[field]));
     }
   }
-
-  // usersRequest = usersRequest
 
   const [count, users] = await Promise.all([countRequest, usersRequest]);
 
@@ -44,7 +69,7 @@ export const getUserById = async ({ id }: GetUserByIdInput) => {
 };
 
 export const createUser = async (data: UserCreateInput) => {
-  await db.insert(usersTable).values(data);
+  await db.insert(usersTable).values({ ...data, isActive: true });
 };
 
 export const updateUser = async ({ id, update }: UserUpdateInput) => {

@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -15,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mono-test/db": ["libs/db/src/index.ts"],
       "@mono-test/routes": ["libs/routes/src/index.ts"],
       "@mono-test/schemas": ["libs/schemas/src/index.ts"]
     }

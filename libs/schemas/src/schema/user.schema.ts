@@ -5,10 +5,14 @@ export const usersQuerySchema = z.object({
   offset: z.number().optional(),
   limit: z.number().optional(),
   sorting: z.object({
-    columnAccessor: z.string(),
+    column: z.string(),
     direction: z.enum(['asc', 'desc'])
   }).optional(),
-  search: z.string().optional()
+  search: z.string().optional(),
+  gender: z.enum(['male', 'female']).optional(),
+  isActive: z.boolean().optional(),
+  ageFrom: z.number().optional(),
+  ageTo: z.number().optional()
 });
 
 export type GetUserByIdInput = z.infer<typeof getUserByIdSchema>;

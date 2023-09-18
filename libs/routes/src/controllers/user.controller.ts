@@ -22,6 +22,7 @@ export const getUsersHandler = async ({
   try {
     return await getManyUsers(input);
   } catch (error) {
+    console.log(error);
     throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR' });
   }
 };
