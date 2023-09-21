@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { MainPage } from '../pages/MainPage';
 import { LoginPage } from '../pages/LoginPage';
 import { useAuth } from '../context/auth.context';
-import { AppShell, Button, Group, Header, Text } from '@mantine/core';
+import { AppShell, Button, Group, Text } from '@mantine/core';
 import { LoadingPage } from '../pages/LoadingPage';
 
 export function App() {
@@ -20,21 +20,21 @@ export function App() {
     return <LoginPage />;
   }
 
-  const header = (
-    <Header height={60} p="sm">
-      <Group position="right" spacing="lg">
-        <Text>{user.name}</Text>
-
-        <Button color="red.4" onClick={logout}>
-          Logout
-        </Button>
-      </Group>
-    </Header>
-  );
-
   return (
-    <AppShell fixed header={header}>
-      <MainPage />
+    <AppShell header={{ height: 60 }}>
+      <AppShell.Header p="sm">
+        <Group justify="right" gap="lg">
+          <Text>{user.name}</Text>
+
+          <Button color="red.4" onClick={logout}>
+            Logout
+          </Button>
+        </Group>
+      </AppShell.Header>
+
+      <AppShell.Main>
+        <MainPage />
+      </AppShell.Main>
     </AppShell>
   );
 }

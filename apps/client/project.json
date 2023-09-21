@@ -4,6 +4,23 @@
   "sourceRoot": "apps/client/src",
   "projectType": "application",
   "targets": {
+    "esbuild": {
+      "executor": "@nx/esbuild:esbuild",
+      "options": {
+        "main": "src/main.ts",
+        "tsConfig": "tsconfig.app.json",
+        "generatePackageJson": true,
+        "outputPath": "dist/apps/esbuild",
+        "bundle": true,
+        "minify": true,
+        "thirdParty": true,
+        "esbuildOptions": {
+          "loader": {
+            ".js": "jsx"
+          }
+        }
+      }
+    },
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],

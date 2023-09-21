@@ -35,7 +35,7 @@ export const AgeRangeFilter = () => {
         max={ageTo}
         onChange={(value) => {
           setAgeRangeValue(([_, ageTo]) => {
-            if (value === '') return [18, ageTo];
+            if (typeof value === 'string') return [18, ageTo];
             return [value, value > ageTo ? value : ageTo];
           });
         }}
@@ -47,7 +47,7 @@ export const AgeRangeFilter = () => {
         max={200}
         onChange={(value) => {
           setAgeRangeValue(([ageFrom, _]) => {
-            if (value === '') return [ageFrom, 200];
+            if (typeof value === 'string') return [ageFrom, 200];
             return [value < ageFrom ? value : ageFrom, value];
           });
         }}

@@ -1,7 +1,6 @@
 import {
   ActionIcon,
   Badge,
-  Box,
   Button,
   Flex,
   Group,
@@ -12,11 +11,13 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
-import { DataTable } from 'mantine-datatable';
+// import { DataTable } from 'mantine-datatable';
 import { useUsers } from '../context/users.context';
 import { AddUserModal } from './AddUserModal';
 import { EditUserModal } from './EditUserModal';
 import { AgeRangeFilter } from './AgeRangeFilter';
+import { DataTable } from './DataTable';
+import { TableActions } from './TableActions';
 
 export const UsersTable = () => {
   const {
@@ -46,11 +47,12 @@ export const UsersTable = () => {
     useDisclosure(false);
 
   return (
-    <Stack>
+    <Stack p="sm">
       <AddUserModal opened={opened} onClose={close} />
       <EditUserModal opened={openedEdit} onClose={closeEdit} />
-      <Stack>
-        <Flex>
+      <TableActions />
+      {/* <Stack>
+        <Flex justify="space-between">
           <Group>
             <Text>Search:</Text>
             <TextInput
@@ -59,13 +61,14 @@ export const UsersTable = () => {
               onChange={(event) => setSearch(event.currentTarget.value)}
             />
           </Group>
-          <Box sx={{ flexGrow: 1 }} />
+
           <Group>
             <Button onClick={open}>Add User</Button>
           </Group>
         </Flex>
-      </Stack>
-      <DataTable
+      </Stack> */}
+      {/* <DataTable
+        fontSize="sm"
         withBorder
         withColumnBorders
         striped
@@ -106,7 +109,7 @@ export const UsersTable = () => {
             filtering: genderFilter !== null,
             filter: (
               <Select
-                clearable
+                allowDeselect
                 value={genderFilter}
                 onChange={setGenderFilter}
                 data={[
@@ -133,7 +136,7 @@ export const UsersTable = () => {
             filtering: isActiveFilter !== null,
             filter: (
               <Select
-                clearable
+                allowDeselect
                 value={isActiveFilter}
                 onChange={setIsActiveFilter}
                 data={[
@@ -156,7 +159,7 @@ export const UsersTable = () => {
             textAlignment: 'right',
             render(record) {
               return (
-                <Group noWrap spacing="xs" position="right">
+                <Group wrap="nowrap" gap="xs" justify="right">
                   <ActionIcon
                     color="yellow"
                     onClick={() => {
@@ -179,7 +182,8 @@ export const UsersTable = () => {
             },
           },
         ]}
-      />
+      /> */}
+      <DataTable />
     </Stack>
   );
 };
