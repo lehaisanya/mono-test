@@ -53,5 +53,8 @@
         "linter": "eslint"
       }
     }
+  },
+  "workspaceLayout": {
+    "projectNameAndRootFormat": "as-provided"
   }
 }
